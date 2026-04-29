@@ -1,0 +1,29 @@
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+
+local function ApplyHeadless(character)
+    local head = character:WaitForChild("Head", 5)
+    if head then
+        -- Cara paling aman biar gak mati: Transparency 1
+        head.Transparency = 1
+        
+        -- Loop buat ngilangin muka & part di dalam kepala
+        for _, v in pairs(head:GetChildren()) do
+            if v:IsA("Decal") then -- Ini buat ngilangin Face
+                v.Transparency = 1
+            end
+        end
+
+        -- Khusus R15 biar kepala beneran ilang di kamera sendiri
+        head:GetPropertyChangedSignal("LocalTransparencyModifier"):Connect(function()
+            head.LocalTransparencyModifier = head.Transparency
+        end)
+        head.LocalTransparencyModifier = 1
+    end
+end
+
+-- Eksekusi langsung
+ApplyHeadless(char)
+
+-- Biar pas respawn tetep headless
+player.CharacterAdded:Connect(ApplyHeadless)
