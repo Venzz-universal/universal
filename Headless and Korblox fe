@@ -1,5 +1,0 @@
--- [[ Venzz hub - New Edition]]
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Venzz-universal/universal/refs/heads/main/Headless%20fe"))()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Venzz-universal/universal/refs/heads/main/Korblox%20fe"))()
